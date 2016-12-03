@@ -1,7 +1,19 @@
 class Array:
     """Array object, behaves like a Java array."""
-    def __init__(self, size):
-        self._container = [None]*size
+    def __init__(self, dimension=1, *size):
+        if len(size) != dimension:
+            raise self.ArraySizeMissingException()
+
+        if size[0] < 0:
+            raise self.NegativeArraySizeException()
+
+        if dimension < 1:
+            raise self.DimensionsOutOfBoundsException()
+        elif dimension > 1:
+            # Populate arrays with other arrays until bottom dimension is reached.
+            self._container = [Array(dimension - 1, *size[:dimension - 1])] * size[0]
+        else:
+            self._container = [None] * size[0]
 
     def __getitem__(self, key):
         """Defines indexed setting behaviour for objects of this class."""
@@ -38,10 +50,22 @@ class Array:
         """Returns maximum capacity of the array."""
         return len(self._container)
 
-
     class ArrayOutOfBoundsException(Exception):
         pass
 
 
     class NonePointerException(Exception):
         pass
+
+
+    class NegativeArraySizeException(Exception):
+        pass
+
+
+    class DimensionsOutOfBoundsException(Exception):
+        pass
+
+    class ArraySizeMissingException(Exception):
+        pass
+
+test=Array(2, 10)
