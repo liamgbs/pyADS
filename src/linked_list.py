@@ -71,7 +71,7 @@ class LinkedList:
         if index == 0:
             add_item_front(data)
         else:
-            return self.root.add_item(data, index)
+            self.root.add_item(data, index)
 
     def add_item_front(self, data):
         """Add item as first element in the list."""
@@ -99,8 +99,8 @@ class LinkedList:
             else:
                 return self.next_node.get_size(count+1)
 
-        def get_item(self, index, count=0):
-            if index == count+1:
+        def get_item(self, index, count=1):
+            if index == count:
                 data = self.next_node.data
                 self.next_node = self.next_node.next_node
                 return data
@@ -108,15 +108,39 @@ class LinkedList:
                 if self.next_node.next_node is None:
                     raise IndexError()
                 else:
-                    return self.next_node.get_item(count+1)
+                    return self.next_node.get_item(index, count+1)
 
         def get_last_item(self):
             if self.next_node.next_node is None:
                 data = self.next_node.data
-                self.next_node = No
+                self.next_node = None
+                return data
+            else:
+                return self.next_node.get_last_item()
 
-        def add_item(self, data, index):
-            raise NotImplementedError()
+        def peek_item(self, index, count=1):
+            if index == count:
+                return self.data
+            else:
+                return self.next_node.peek_item(index, count+1)
+
+        def peek_last_item(self):
+            if self.next_node is None:
+                return self.data
+            else:
+                self.next_node.peek_item()
+
+        def add_item(self, data, index, count=1):
+            if index == count:
+                self.next_node = self._Node(self.next_node, data)
+            else:
+                self.next_node.add_item(data, index, count+1)
+
+        def add_item_end(self, data):
+            if self.next_node is None:
+                self.next_node = _Node(None, data)
+            else:
+                self.next_node.add_item_end(data)
 
 class ListEmptyError(Exception):
         pass
@@ -135,4 +159,5 @@ if __name__ == '__main__':
     x.add_item_front("hello")
     print x.get_item(1)
     print x.peek_first_item()
+    print x.get_item(1)
     print x.get_size()
