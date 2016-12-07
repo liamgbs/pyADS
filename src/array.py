@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class Array:
     """Array object, behaves like a Java array."""
     def __init__(self, dimension=1, *size):
@@ -11,12 +13,12 @@ class Array:
             raise self.DimensionsOutOfBoundsException()
         elif dimension > 1:
             # Populate arrays with other arrays until bottom dimension is reached.
-            self._container = [Array(dimension - 1, *size[:dimension - 1])] * size[0]
+            self._container = [Array(dimension - 1, *size[:dimension - 1]) for index in range(size[0])]
         else:
             self._container = [None] * size[0]
 
     def __getitem__(self, key):
-        """Defines indexed setting behaviour for objects of this class."""
+        """Defines indexed getting behaviour for objects of this class."""
         if key > len(self._container) - 1:
             raise self.ArrayOutOfBoundsException()
         elif self._container[key] is None:
@@ -67,5 +69,3 @@ class Array:
 
     class ArraySizeMissingException(Exception):
         pass
-
-test=Array(2, 10)
