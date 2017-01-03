@@ -69,7 +69,7 @@ class LinkedList:
     def add_item(self, data, index):
         """Insert item at index."""
         if index == 0:
-            add_item_front(data)
+            self.add_item_front(data)
         else:
             self.root.add_item(data, index)
 
@@ -80,9 +80,9 @@ class LinkedList:
     def add_item_end(self, data):
         """Add item as last element in the list."""
         if self.root is None:
-            self.add_item_front()
+            self.add_item_front(data)
         else:
-            self.root.add_item_end()
+            self.root.add_item_end(data)
 
     def clear(self):
         """Empty list as if newly created."""
@@ -132,7 +132,7 @@ class LinkedList:
 
         def add_item(self, data, index, count=1):
             if index == count:
-                self.next_node = self._Node(self.next_node, data)
+                self.next_node = _Node(self.next_node, data)
             else:
                 self.next_node.add_item(data, index, count+1)
 
@@ -142,7 +142,7 @@ class LinkedList:
             else:
                 self.next_node.add_item_end(data)
 
-class ListEmptyError(Exception):
+    class ListEmptyError(Exception):
         pass
 
 
@@ -155,9 +155,9 @@ class ListEmptyError(Exception):
 # Test
 if __name__ == '__main__':
     x = LinkedList()
-    x.add_item_front("world")
-    x.add_item_front("hello")
-    print x.get_item(1)
-    print x.peek_first_item()
-    print x.get_item(1)
-    print x.get_size()
+    x.add_item_end(1)
+    x.add_item_end(2)
+    x.add_item_end(1)
+    print x.get_first_item()
+    print x.get_first_item()
+    print x.get_first_item()
