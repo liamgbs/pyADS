@@ -67,5 +67,6 @@ class Array:
     class DimensionsOutOfBoundsException(Exception):
         pass
 
+
     class ArraySizeMissingException(Exception):
         pass
