@@ -50,6 +50,36 @@ print linkedlist.get_size()
 linkedlist.clear()
 ```
 
+## Stacks
+
+A stack is a last in first out data structure, data pushed to the stack can be
+retrived by popping immediately, to get to the first peice of data pushed, one must
+pop until the bottom of the stack is reached. Stacks are useful with jobs that
+require back tracking such as a function call stack or checking for balanced parentheses.
+
+### Stack
+
+The stack is has an default capacity of infinity, but this can be set upon
+instantiation. Pushing beyond the stacks capacity will cause a `StackOverflowError`.
+However popping an empty stack will return `None`.
+
+```python
+# Define a stack with a capacity of 3 elements
+my_stack = Stack(3)
+
+# Push some data to the stack
+my_stack.push("world!")
+my_stack.push("Hello, ")
+
+# Get size of stack
+print my_stack.get_size()
+>> 2
+
+# Pop data from stack
+print my_stack.pop() + my_stack.pop()
+>> "Hello, world!"
+```
+
 ## Miscellaneous
 
 ### Java Array
