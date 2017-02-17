@@ -76,13 +76,3 @@ class Array:
 
     class ArrayDimensionException(Exception):
         pass
-
-if __name__ == '__main__':
-    arr = Array(2, 10, 10)
-
-    for x in range(10):
-        for y in range(10):
-            arr[x][y] = (x,y)
-
-    for x in arr:
-        print x
