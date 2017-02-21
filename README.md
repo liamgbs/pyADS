@@ -53,7 +53,7 @@ linkedlist.clear()
 ## Stacks
 
 A stack is a last in first out data structure, data pushed to the stack can be
-retrived by popping immediately, to get to the first peice of data pushed, one must
+retrieved by popping immediately. To get to the first peice of data pushed, one must
 pop until the bottom of the stack is reached. Stacks are useful with jobs that
 require back tracking such as a function call stack or checking for balanced parentheses.
 
@@ -68,15 +68,41 @@ However popping an empty stack will return `None`.
 my_stack = Stack(3)
 
 # Push some data to the stack
-my_stack.push("world!")
+my_stack.push("!")
+my_stack.push("world")
 my_stack.push("Hello, ")
 
 # Get size of stack
 print my_stack.get_size()
->> 2
+>> 3
 
 # Pop data from stack
-print my_stack.pop() + my_stack.pop()
+print my_stack.pop() + my_stack.pop() + my_stack.pop()
+>> "Hello, world!"
+```
+
+## Queues
+
+A queue is a first in first out data structure, data that is enqueued is added
+to the back to the queue and is dequeued when it reaches the front.
+
+### Queue
+
+```python
+# Define a queue with a capacity of 3 elements
+my_queue = Queue(3)
+
+# Queue some data
+my_queue.enqueue("Hello, ")
+my_queue.enqueue("world")
+my_queue.enqueue("!")
+
+# Get size of queue
+print my_queue.get_size()
+>> 3
+
+# Dequeue data
+print my_queue.dequeue() + my_queue.dequeue() + my_queue.dequeue()
 >> "Hello, world!"
 ```
 
